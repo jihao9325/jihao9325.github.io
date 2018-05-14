@@ -5,32 +5,32 @@
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
   <style>
-    html, body {
-      height: 100%;
-      width: 100%;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      min-width: 400px;
     }
 
     #top {
       width: 100vd;
       height: 100px;
-      border: 1px solid;
+      border-bottom: 1px solid;
+      background-color: gray;
     }
     
     #left {
       width: 220px;
       height: calc(100vh - 100px);
-      border: 1px solid;
+      border-right: 1px solid;
+      background-color: gray;
 
     }
     #main {
-      border: 1px solid;
       height: calc(100vh - 100px);
-      width: calc(100vd - 222px);
-      margin-left: 222px;
-      margin-top: calc(-100vh + 98px);
+      width: calc(100vd - 220px);
+      margin-left: 220px;
+      margin-top: calc(-100vh + 100px);
+      background-color: silver;
     }
   </style>
 </head>
