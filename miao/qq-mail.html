@@ -10,7 +10,8 @@
       margin: 0;
       padding: 0;
     }
-
+    
+    /*
     #top {
       width: 100vw;
       height: 100px;
@@ -31,14 +32,50 @@
       margin-left: 220px;
       margin-top: calc(-100vh + 100px);
       background-color: silver;
+    } 
+    */
+    
+    html, body, div {
+     width: 100vw;
+     height: 100vh;
     }
+    span {
+      display: inline-block;
+    }
+    #top {
+      background-color: pink;
+      width: 100vw;
+      height: 100px;
+      border-bottom: 1px solid;
+    }
+    #left {
+      background-color: rgb(80, 120, 170);
+      width: 220px;
+      height: calc(100vh - 100px);
+      border-right: 1px solid;
+    }
+    #main {
+      background-color: rgb(120, 170, 100);
+      width: calc(100vw - 220px);
+      height: calc(100vh - 100px);
+    }
+
   </style>
 </head>
 <body>
+  <!--
   <div id="top"></div>
   <div style="height: calc(100% - 100px);">
     <div id="left"></div>
     <div id="main"></div>
   </div>
+  -->
+
+  <div>
+    <span id="top">qq</span><!--
+    --><span id="left">list</span><!--
+    --><span id="main">main</span>   
+  </div>
+  
 </body>
 </html>
