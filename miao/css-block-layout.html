@@ -19,6 +19,7 @@
       margin-right: auto;
     }
 
+   /*
     .list {
       margin: 0;
       padding: 0;
@@ -35,7 +36,7 @@
       line-height: 200%;
       
     }
-
+    
     .list li:nth-child(n+5) {
       margin-left: 210px;
     }
@@ -48,6 +49,23 @@
     .list li:hover {
       background-color: red;
     }
+     */
+    
+    #dozen_blocks > span {
+      border: 3px solid;
+      background-color: pink;
+      display: inline-block;
+      box-sizing: border-box;
+      width: 180px;
+      height: 40px;
+      margin:0 30px 15px 0;
+      padding-top: 0.5em;
+      
+    }
+    #dozen_blocks > span:nth-child(3n+3) {
+      margin-right: 0;
+    }
+    
 
     .link {
       margin: 0;
@@ -83,6 +101,7 @@
       </p>
     </div>
 
+    <!-- 
     <div>
       <ul class="list">
         <li>宽180高40(包含边框)</li>
@@ -98,6 +117,22 @@
         <li>产品</li>
         <li>产品</li>
       </ul>
+    </div>
+     -->
+
+    <div id="dozen_blocks">
+      <span>宽180高40(包含边框)</span><!--
+      --><span>产品</span><!--
+      --><span>产品</span><!--
+      --><span>水平间隙30px</span><!--
+      --><span>产品</span><!--
+      --><span>产品</span><!--
+      --><span>垂直间隙15px</span><!--
+      --><span>产品</span><!--
+      --><span>产品</span><!--
+      --><span>边框宽度3px</span><!--
+      --><span>产品</span><!--
+      --><span>产品</span>
     </div>
 
     <div>
