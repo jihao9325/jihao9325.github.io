@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+
+  <style>
+    html {
+      font-size: 25px;
+    }
+
+    div {
+      width: 12rem;
+      height: 1.4rem;
+      border: 1px solid #eee;
+    }
+    div:active {
+      background-color: #efefef;
+    }
+    input.acheckbox {
+      display: none;
+    }
+
+    .abutton {
+      width: 2rem;
+      height: 1rem;
+      display: block;
+      background-color: transparent;
+      border-radius: 2rem;
+      position: relative;
+      transition-duration: 3s;
+      transition-timing-function: step-end;
+      margin: 0.2rem 0.2rem ;
+      float: right;
+      cursor: pointer;
+    }
+    .abutton:after {
+      content: '';
+      display: block;
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 1rem;
+      background-color: #fff;
+      box-shadow: 0 1px 1px #666;
+      position: absolute;
+      z-index: 999;
+      left: 0.1rem;
+      top: 0.1rem;
+      transition: 0.4s ease-in-out;
+    }
+
+    input.acheckbox:checked+label.abutton {
+      background-color: rgb(110,220,100);
+      transition: 1s step;
+    }
+    input.acheckbox:checked+label.abutton:after {
+      transform: translateX(1rem);
+      transition-delay: 0.1s;
+    }
+    input.acheckbox:active:checked+label.abutton:after {
+      padding-left: 0.4rem;
+      margin-left: -0.4rem;
+      padding-right: 0;
+    }
+    input.acheckbox:active+label.abutton:after {
+      padding-right: 0.4rem;
+    }
+
+    label>div#back_scale {
+      border: 0;
+      background-color: #ccc;
+      position: absolute;
+      width: 2rem;
+      height: 1rem;
+      border-radius: 2rem;
+      transition-duration: 0.8s;
+      transform: scale(1,1);
+    }
+    input.acheckbox:checked+label>div#back_scale {
+      background-color: transparent;
+      position: absolute;
+      width: 2rem;
+      height: 1rem;
+      border-radius: 2rem;
+      transition-duration: 1s;
+      transform: scale(0, 0);
+    }
+
+    label.intro > span {
+      display: inline-block;
+      width: calc(100% - 2.6rem - 2px);
+      height: 1.4rem;
+      overflow: hidden;
+      margin-left: 0.2rem;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    <label for="ios-button" class="intro"><span>WLAN</span></label>
+    <input type="checkbox" name="" id="ios-button" class="acheckbox">
+    <label for="ios-button" class="abutton">
+      <div id="back_scale"></div>
+    </label>
+  </div>
+</body>
+</html>
