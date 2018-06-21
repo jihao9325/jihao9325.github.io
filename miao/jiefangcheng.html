@@ -1,57 +1,41 @@
+<script>
+  var a = Number(prompt('a =   (a不为0)'))
+  var b = Number(prompt('b = '))
+  var c = Number(prompt('c = '))
+  var s_delta, x1, x2
+  var delta = b * b - 4 * a * c
+  if(a == 0) {
+    alert("a不能为0")
+  } else if(delta > 0) {
+    s_delta = Math.sqrt(delta)
+    x1 = (-b - s_delta) / (2 * a)
+    x2 = (-b + s_delta) / (2 * a)
+    document.write("方程有两个实根分别为: " + "x1 = " + x1 + ", " + "x2 = " + x2)
+  } else if(delta == 0) {
+    x1 = -b / (2 * a)
+    document.write("方程有且仅有一个实根: " + "x = " + x1)
+  } else {
+    s_delta = Math.sqrt(-delta)
+    x1 = -b / (2 * a)
+    document.write("方程有两个复根分别为: " + "x1 = " + x1 + "+" + s_delta + "i" + ", " + "x2 = " + x1 + "-" + s_delta + "i")
+  }
+</script>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <input  id="demo1"  type="button"  value="点击我解一元二次方程 ax^2+bx+c=0(a不为0)" >
-  <input  id="demo2"  type="button"  value="点击我解二元一次方程 ax+by=c & dx+ey=f" >
-  <script type="text/javascript">
-    document.getElementById("demo1").onclick=function() {
-      var a = Number(prompt('a =   (a不为0)'))
-      var b = Number(prompt('b = '))
-      var c = Number(prompt('c = '))
-      var s_delta, x1, x2
-      var delta = b * b - 4 * a * c
-      if(a == 0) {
-        alert("a不能为0")
-      } else if(delta > 0) {
-        s_delta = Math.sqrt(delta)
-        x1 = (-b - s_delta) / (2 * a)
-        x2 = (-b + s_delta) / (2 * a)
-        document.write("方程有两个实根分别为: " + "x1 = " + x1 + ", " + "x2 = " + x2)
-      } else if(delta == 0) {
-        x1 = -b / (2 * a)
-        document.write("方程有且仅有一个实根: " + "x = " + x1)
-      } else {
-        s_delta = Math.sqrt(-delta)
-        x1 = -b / (2 * a)
-        document.write("方程有两个复根分别为: " + "x1 = " + x1 + "+" + s_delta + "i" + ", " + "x2 = " + x1 + "-" + s_delta + "i")
-      }
-    }
-
-    document.getElementById("demo2").onclick=function() {
-      var A = Number(prompt('A = '))
-      var B = Number(prompt('B = '))
-      var C = Number(prompt('C = '))
-      var D = Number(prompt('D = '))
-      var E = Number(prompt('E = '))
-      var F = Number(prompt('F = '))
-      var x, y
-      if(A * E == B * D && B * F == C * E) {
-        document.write("方程有无穷解")
-      } else if(A * E == B * D && B * F != C * E) {
-        document.write("方程无解")
-      } else {
-        x = (C * E - B * F) / (A * E - B * D)
-        y = (C * D - A * F) / (B * D - A * E)
-        document.write("方程有唯一一组解:" + "x = " + x + ", " + "y = " + y)
-      }
-    }
-  </script>
-</body>
-</html>
+<script>
+  var A = Number(prompt('A = '))
+  var B = Number(prompt('B = '))
+  var C = Number(prompt('C = '))
+  var D = Number(prompt('D = '))
+  var E = Number(prompt('E = '))
+  var F = Number(prompt('F = '))
+  var x, y
+  if(A * E == B * D && B * F == C * E) {
+    document.write("方程有无穷解")
+  } else if(A * E == B * D && B * F != C * E) {
+    document.write("方程无解")
+  } else {
+    x = (C * E - B * F) / (A * E - B * D)
+    y = (C * D - A * F) / (B * D - A * E)
+    document.write("方程有唯一一组解:" + "x = " + x + ", " + "y = " + y)
+  }
+</script>
