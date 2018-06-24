@@ -31,6 +31,7 @@
   var x4, y4 = 40
   var x5
   var x6
+  var x7, y7, r = 40
   for (x1 = 0; x1 <= 399; x1 = x1 + 1) {
     dot(x1, y1, "black")
   }
@@ -52,6 +53,12 @@
   for (x6 = 0; x6 <= 399; x6 = x6 + 1) {
     dot(x6, (x6 * 3 / 4), "black")
   }
-  
+  for (x7 = 20; x7 <= 100; x7 = x7 + 0.05) {
+    for (y7 = 20; y7 <= 100; y7 = y7 + 0.05) {
+      if (parseInt((x7 - 60) ** 2 + (y7 - 60) ** 2) == r ** 2) {
+        dot(x7, y7, "black")
+      }
+    }
+  }
 </script>
 </html>
