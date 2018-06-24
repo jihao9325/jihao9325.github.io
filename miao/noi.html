@@ -24,7 +24,7 @@
     console.log("C不能为0！")
   } else {
     s = (a + b) / c
-    console.log("(A + B) / C = " + s)
+    console.log(s)
   }
 </script>
 
@@ -36,8 +36,8 @@
   var remainder
   quotient = parseInt(numerator / denominator)
   remainder = numerator % denominator
-  console.log("整数商为" + quotient)
-  console.log("余数为" + remainder)
+  console.log(quotient)
+  console.log(remainder)
 </script>
 
 
@@ -46,7 +46,7 @@
   var a = parseInt(Number(prompt("a= ")))
   var b = parseInt(Number(prompt("b= ")))
   var s = Math.round((a / b) * 1e9) / 1e9
-  console.log("a / b = " + s)
+  console.log(s)
 </script>
 
 
@@ -54,7 +54,7 @@
   var infect = parseInt(Number(prompt("确诊人数")))
   var dead = parseInt(Number(prompt("死亡人数")))
   var mortality = Math.round((dead / infect) * 1000) / 1000
-  console.log("死亡率：" + mortality)
+  console.log(mortality)
 </script>
 
 
@@ -66,7 +66,7 @@
     console.log("输入错误")
   } else {
     c = 5 * (f - 32) / 9
-    console.log("对应摄氏温度：" + Math.round(c * 1e5) / 1e5)
+    console.log(Math.round(c * 1e5) / 1e5)
   }
 </script>
 
