@@ -33,7 +33,7 @@
   var x6
   var x7, y7, r = 40
   for (x1 = 0; x1 <= 399; x1 = x1 + 1) {
-    dot(x1, y1, "black")
+    dot(x1, y1, "hsl(" + x1 + ", 100%, 50%)")
   }
   for (x2 = 0; x2 <= 399; x2 = x2 + 2) {
     dot(x2, y2, "black")
@@ -42,23 +42,66 @@
     dot(x3, y3, "black")
     dot(x3 + 1, y3, "black")
   }
-  for (x4 = 0; x4 <= 399; x4 = x4 + 5) {
-    dot(x4, y4, "black")
-    dot(x4 + 1, y4, "black")
-    dot(x4 + 2, y4, "black")
+  for (x4 = 0; x4 <= 399; x4 = x4 + 1) {
+    if (x4 % 5 < 3) {
+      dot(x4, y4, "black")
+    }
   }
   for (y5 = 0; y5 <= 299; y5 = y5 + 1) {
       dot(y5, y5, "black")
   }
   for (x6 = 0; x6 <= 399; x6 = x6 + 1) {
     dot(x6, (x6 * 3 / 4), "black")
+    // 次像素
   }
-  for (x7 = 20; x7 <= 100; x7 = x7 + 0.05) {
-    for (y7 = 20; y7 <= 100; y7 = y7 + 0.05) {
-      if (parseInt((x7 - 60) ** 2 + (y7 - 60) ** 2) == r ** 2) {
+
+  for (x7 = 20; x7 <= 100; x7 = x7 + 0.02) {
+    for (y7 = 20; y7 <= 100; y7 = y7 + 0.02) {
+      if (Math.round(((x7 - 60) ** 2 + (y7 - 60) ** 2) * 10) == Math.round(r ** 2 * 10)) {
         dot(x7, y7, "black")
       }
     }
   }
+
+  for (x7 = -r; x7 <= r; x7 = x7 + 1) {
+    y7 = Math.sqrt(r ** 2 - x7 ** 2)
+    dot(x7 + 60, y7 + 210, "black")
+    dot(x7 + 60, -y7 + 210, "black")
+    dot(-y7 + 60, x7 + 210, "black")
+    dot(y7 + 60, -x7 + 210, "black")
+  }
+
+  for (x7 = -r; x7 <= r; x7 = x7 + 1) {
+    y7 = Math.sqrt(r ** 2 - x7 ** 2)
+    dot(x7 + 160, y7 + 210, "black")
+    dot(x7 + 160, -y7 + 210, "black")
+  }
+  for (y7 = -r; y7 <= r; y7 = y7 + 1) {
+    x7 = Math.sqrt(r ** 2 - y7 ** 2)
+    dot(x7 + 160, y7 + 210, "black")
+    dot(-x7 + 160, y7 + 210, "black")
+  }
+
+  for (var a = 0; a <= 2 * Math.PI; a = a + 0.01) {
+    x7 = r * Math.sin(a)
+    y7 = r * Math.cos(a)
+    dot(x7 + 260, y7 + 210, "black") 
+  }
+
+  var x8, y8
+  for (y8 = 50; y8 <= 120; y8++) {
+    for (x8 = 300; x8 <= 370; x8++) {
+      dot(x8, y8, 'rgb(255, ' +parseInt((370 - x8) / 70 * 256 - 1)+ ', ' +parseInt(((y8 - 50) / 70) * 256 - 1)+ ')')
+    }
+  }
+
+var x, y
+for (x = 0; x < 400; x+=0.5) {
+  for (var t = 50; t <= 100; t = t + 50) {
+    y = Math.sin(x * Math.PI / t) * t
+    dot(x, 150 - y, "black")
+  }
+}
+
 </script>
 </html>
