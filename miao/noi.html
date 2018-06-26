@@ -640,13 +640,13 @@
   
   
   <script id="itob" sample-input="123" sample-output="123" comment="数字转换成字符串">
-    var n = Number(prompt("输入一个正整数"))
+    var n = Number(prompt("输入一个非负整数"))
     var s = ""
-    while (n > 0) {
+    do {
       var a = String.fromCharCode((n % 10) + 48)
       s = a + s
       n = parseInt(n / 10)
-    }
+    } while (n > 0)
     console.log(s)
   </script>
   
