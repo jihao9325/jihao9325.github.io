@@ -57,7 +57,7 @@ var jihao9325 = {
     for (var key in collection) {
       action(collection[key], key)
     }
-    return collection
+    return
   },
 
   forEachRight: function (array, action = identity) {
