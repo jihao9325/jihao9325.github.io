@@ -53,14 +53,14 @@ var jihao9325 = {
     return initialValue
   },
 
-  forEach: function (collection, action = identity) {
+  forEach: function (collection, action = jihao9325.identity) {
     for (var key in collection) {
       action(collection[key], key)
     }
     return
   },
 
-  forEachRight: function (array, action = identity) {
+  forEachRight: function (array, action = jihao9325.identity) {
     for (var i = array.length - 1; i >= 0; i--) {
       action(array[i], i, array)
     }
@@ -137,7 +137,13 @@ var jihao9325 = {
     return result
   },
 
-  sumBy: function (array, iteratee) {
+  sumBy: function (array, iteratee = jihao9325.identity) {
+    if (typeof iteratee == 'string') {
+      for (var i = 0; i < array.length; i++) {
+        result += array[i][iteratee]
+      }
+      return result
+    }
     var result = 0
     for (var i = 0; i < array.length; i++) {
       result += iteratee(array[i])
