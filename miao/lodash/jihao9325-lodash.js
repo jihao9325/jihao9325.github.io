@@ -57,13 +57,14 @@ var jihao9325 = {
     for (var key in collection) {
       action(collection[key], key)
     }
-    return
+    return collection
   },
 
   forEachRight: function (array, action = jihao9325.identity) {
     for (var i = array.length - 1; i >= 0; i--) {
       action(array[i], i, array)
     }
+    return collection
   },
 
   concat: function (array, ...values) {
