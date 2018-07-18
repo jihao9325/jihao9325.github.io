@@ -57,6 +57,7 @@ var jihao9325 = {
     for (var key in collection) {
       action(collection[key], key)
     }
+    return collection
   },
 
   forEachRight: function (array, action = identity) {
@@ -66,6 +67,8 @@ var jihao9325 = {
   },
 
   concat: function (array, ...values) {
+    var result = []
+    result.push(...array)
     return values.reduce (function (result, item, index, values) {
       if (Array.isArray(item)) {
         result.push(...item)
@@ -73,7 +76,7 @@ var jihao9325 = {
         result.push(item)
       }
       return result
-    }, Array(...array))
+    }, result)
   },
 
   map: function (collection, mapper) {
