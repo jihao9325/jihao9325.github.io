@@ -4,6 +4,14 @@ var jihao9325 = {
     return value[0]
   },
 
+  property: function (path) {
+    return function (obj) {
+      return obj[path]
+    }
+  },
+
+
+
   chunk: function (array, size = 1) {
     var result = []
     for (var i = 0; i < array.length; i += size) {
@@ -64,7 +72,7 @@ var jihao9325 = {
     for (var i = array.length - 1; i >= 0; i--) {
       action(array[i], i, array)
     }
-    return collection
+    return array
   },
 
   concat: function (array, ...values) {
@@ -131,27 +139,34 @@ var jihao9325 = {
   },
 
   sum: function (array) {
-    var result = 0
-    for (var i = 0; i < array.length; i++) {
-      result += array[i]
-    }
-    return result
+    return sumBy(array, jihao9325.identity)
   },
 
   sumBy: function (array, iteratee = jihao9325.identity) {
+    var result = 0
     if (typeof iteratee == 'string') {
       for (var i = 0; i < array.length; i++) {
         result += array[i][iteratee]
       }
       return result
     }
-    var result = 0
+    
     for (var i = 0; i < array.length; i++) {
       result += iteratee(array[i])
     }
     return result
-  }
+  },
 
+  difference: function (array, ...values) {
+    return array.filter(function (item) {
+      var ary = [].concat(...values)
+      return ary.indexOf(item) == -1
+    })
+  },
+
+  differenceBy: function (array, ...values, func) {
+
+  },
 
 
 
