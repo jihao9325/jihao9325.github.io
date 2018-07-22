@@ -10,8 +10,6 @@ var jihao9325 = {
     }
   },
 
-
-
   chunk: function (array, size = 1) {
     var result = []
     for (var i = 0; i < array.length; i += size) {
@@ -138,25 +136,6 @@ var jihao9325 = {
     },[])
   },
 
-  sum: function (array) {
-    return sumBy(array, jihao9325.identity)
-  },
-
-  sumBy: function (array, iteratee = jihao9325.identity) {
-    var result = 0
-    if (typeof iteratee == 'string') {
-      for (var i = 0; i < array.length; i++) {
-        result += array[i][iteratee]
-      }
-      return result
-    }
-    
-    for (var i = 0; i < array.length; i++) {
-      result += iteratee(array[i])
-    }
-    return result
-  },
-
   difference: function (array, ...values) {
     return array.filter(function (item) {
       var ary = [].concat(...values)
@@ -164,13 +143,117 @@ var jihao9325 = {
     })
   },
 
-  differenceBy: function (array, ...values, func) {
+  differenceBy: function (array, ...values, iteratee) {
 
   },
 
+  matches: function (source) {
+    return function (obj) {
+      for (var key in source) {
+        if (obj[key] !== source[key]) {
+          return false
+        }
+        return true
+      }
+    }
+  },
 
+  matchesProperty: function (pairs) {
+    return this.matches(fromPairs(pairs))
+  },
 
+  fromPairs: function (pairs) {
 
+  },
+
+  toPairs: function (pairs) {
+
+  },
+
+  add: function (augend, addend) {
+    return augend + addend
+  },
+
+  ceil: function (number, precision = 0) {
+    return Math.ceil(number * 10 ** precision) / 10 ** precision
+  },
+
+  divide: function (dividend, divisor) {
+    return dividend / divisor
+  },
+
+  floor: function (number, precision = 0) {
+    return Math.floor(number * 10 ** precision) / 10 ** precision
+  },
+
+  max: function (array) {
+    return jihao9325.maxBy(array)
+  },
+
+  maxBy: function (array, iteratee = jihao9325.identity) {
+    if (array == false) {return undefined}
+    if (typeof iteratee == "string") {
+      iteratee = jihao9325.property(iteratee)
+    }
+    return array.reduce(function (result, item) {
+      return Math.max(result, iteratee(item))
+    }, -Infinity)
+  },
+
+  mean: function (array) {
+    return this.meanBy(array)
+  },
+
+  meanBy: function (array, iteratee = jihao9325.identity) {
+    if (array == false) {return undefined}
+    if (typeof iteratee == "string"){
+      iteratee = jihao9325.property(iteratee)
+    }
+    return array.reduce(function(result, item) {
+      result += iteratee(item)
+      return result
+    }, 0) / array.length
+  },
+
+  min: function (array) {
+    return jihao9325.minBy(array)
+  },
+
+  minBy: function (array, iteratee = jihao9325.identity) {
+    if (array == false) {return undefined}
+    if (typeof iteratee == "string") {
+      iteratee = jihao9325.property(iteratee)
+    }
+    return array.reduce(function(result, item) {
+      return Math.min(result, iteratee(item))
+    }, Infinity)
+  },
+
+  multiply: function (multiplier, multiplicand) {
+    return multiplier * multiplicand
+  },
+
+  round: function (number, precision) {
+    return Math.round(number * 10 ** precision) / 10 * precision
+  },
+
+  subtract: function (minuend, subtrahend) {
+    return minuend - subtrahend
+  },
+
+  sum: function (array) {
+    return sumBy(array)
+  },
+
+  sumBy: function (array, iteratee = jihao9325.identity) {
+    if (typeof iteratee == 'string') {
+      iteratee = jihao9325.property(iteratee)
+    }
+    return array.reduce(function(result, item) {
+      result += iteratee(item)
+      return result
+    }, 0)
+  },
 
 
 
