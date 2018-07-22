@@ -195,9 +195,16 @@ var jihao9325 = {
     if (typeof iteratee == "string") {
       iteratee = jihao9325.property(iteratee)
     }
-    return array.reduce(function (result, item) {
-      return Math.max(result, iteratee(item))
+    var res
+    array.reduce(function (result, item, index) {
+      var val = iteratee(item)
+      if (result <= val) {
+        result = val
+        res = item        
+      }
+      return result
     }, -Infinity)
+    return res
   },
 
   mean: function (array) {
@@ -224,9 +231,16 @@ var jihao9325 = {
     if (typeof iteratee == "string") {
       iteratee = jihao9325.property(iteratee)
     }
-    return array.reduce(function(result, item) {
-      return Math.min(result, iteratee(item))
+    var res
+    array.reduce(function (result, item, index) {
+      var val = iteratee(item)
+      if (result >= val) {
+        result = val
+        res = item        
+      }
+      return result
     }, Infinity)
+    return res
   },
 
   multiply: function (multiplier, multiplicand) {
@@ -234,7 +248,7 @@ var jihao9325 = {
   },
 
   round: function (number, precision) {
-    return Math.round(number * 10 ** precision) / 10 * precision
+    return Math.round(number * 10 ** precision) / 10 ** precision
   },
 
   subtract: function (minuend, subtrahend) {
@@ -242,7 +256,7 @@ var jihao9325 = {
   },
 
   sum: function (array) {
-    return sumBy(array)
+    return jihao9325.sumBy(array)
   },
 
   sumBy: function (array, iteratee = jihao9325.identity) {
@@ -279,12 +293,60 @@ var jihao9325 = {
   },
 
   inRange: function (number, start = 0, end) {
-
+      if (arguments.length == 2) {
+        start = 0
+        end = arguments[1]
+      }
+      if (start > end) {
+        let temp = end
+        end = start
+        start = temp
+      }
+      if (number >= start && number < end) {
+        return true
+      }
+      return false
   },
 
+  random: function (lower = 0, upper = 1, floating = false) {
+    if (arguments.length == 1) {
+      if (typeof arguments[0] == "boolean") {
+        lower = 0
+        upper = 1
+        floating = arguments[0]
+      } else {
+        lower = 0
+        upper = arguments[0]
+      }
+    }
+    if (arguments.length == 2) {
+      if (typeof arguments[1] == "boolean") {
+        lower = 0
+        upper = arguments[0]
+        floating = arguments[1]
+      } else {
+        lower = arguments[0]
+        upper = arguments[1]
+      }
+    }
 
+    if (floating || (lower != parseInt(lower)) || (upper != parseInt(upper))) {
+      return (Math.random() && (1-Math.random())) * (upper - lower) + lower
+      //how to touch upper?
+    } else {
+      return Math.floor(Math.random() * (upper - lower + 1)) + lower
+    }
+  },
 
+  flow: function (funcs) {
+    return function(...vals) {
+      return funcs.reduce(function(acc, item) {
+        return item(acc)
+      }, funcs.shift()(...vals))
+    }
+  },
 
+  
 
 
 }
