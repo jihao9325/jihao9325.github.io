@@ -1,5 +1,6 @@
 var jihao9325 = {
 
+/*---Util---*/
   identity: function (...value) {
     return value[0]
   },
@@ -10,6 +11,7 @@ var jihao9325 = {
     }
   },
 
+/*---Array---*/
   chunk: function (array, size = 1) {
     var result = []
     for (var i = 0; i < array.length; i += size) {
@@ -26,6 +28,174 @@ var jihao9325 = {
       }
     }
     return result
+  },
+
+  concat: function (array, ...values) {
+    var result = []
+    result.push(...array)
+    return values.reduce (function (result, item, index, values) {
+      if (Array.isArray(item)) {
+        result.push(...item)
+      } else {
+        result.push(item)
+      }
+      return result
+    }, result)
+  },
+
+  difference: function (array, ...values) {
+    return array.filter(function (item) {
+      var ary = [].concat(...values)
+      return ary.indexOf(item) == -1
+    })
+  },
+
+  differenceBy: function () {
+
+  },
+
+  differenceWith: function () {
+
+  },
+
+  drop: function (array, n = 1) {
+    n = Math.min(n, array.length)
+    for (var i = 0; i < n; i++) {
+      array.shift()
+    }
+    return array
+  },
+
+  dropRight: function (array, n = 1) {
+    n = Math.min(array.length, n)
+    for (var i = 0; i < n; i++) {
+      array.pop()
+    }
+    return array
+  },
+
+  dropWhile: function (array, predicate = jihao9325.identity) {
+    
+  },
+
+  dropRightWhile: function () {
+
+  },
+
+  fill: function (array, value, start = 0, end = array.length) {
+    if (start < 0) {start = array.length + start}
+    if (end < 0) {end = array.length + end}
+    array.reduce(function (result, item, index, array) {
+      if (index >= start && index < end) {
+        array[index] = value
+      }
+    }, 0)
+    return array
+  },
+
+  findIndex: function () {
+
+  },
+
+  findLastIndex: function () {
+
+  },
+
+  flatten: function (array) {
+    return array.reduce(function (result, item, index, array) {
+      if (Array.isArray(item)) {
+        result.push(...item)
+      } else {
+        result.push(item)
+      }
+      return result
+    },[])
+  },
+
+  flattenDeep: function () {
+
+  },
+
+  flattenDepth: function () {
+
+  },
+
+  fromPairs: function (pairs) {
+
+  },
+
+  head: function (array) {
+    return array[0]
+  },
+
+  indexOf: function () {
+
+  },
+
+  initial: function (array) {
+    array.pop()
+    return array
+  },
+
+  intersection: function () {
+
+  },
+
+  intersectionBy: function () {
+
+  },
+
+  intersectionWith: function () {
+
+  },
+
+  join: function (array, separator = ',') {
+    return array.reduce(function (result, item, index, array) {
+      if (index == array.length - 1) {
+        result = result + item
+      } else {
+        result = result + item + separator
+      }
+      return result
+    },'')
+  },
+
+  last: function (array) {
+    return array[array.length - 1]
+  },
+
+  lastIndexOf: function () {
+
+  },
+
+  nth: function (array, n = 0) {
+    if (n < 0) {
+      n = array.length + n
+    }
+    return array[n]
+  },
+
+  pull: function () {
+
+  },
+
+  reverse: function (array) {
+    var len = array.length
+    for (var i = 0; i < Math.floor(len / 2); i++) {
+      var temp = array[i]
+      array[i] = array[len - i - 1]
+      array[len - i - 1] = temp
+    }
+    return array
+  },
+
+  tail: function (array) {
+    array.shift()
+    return array
+  },
+
+  take: function (array, n = 1) {
+    return array.slice(0, n)
   },
 
   reduce: function (collection, reducer, initialValue) {
@@ -73,18 +243,7 @@ var jihao9325 = {
     return array
   },
 
-  concat: function (array, ...values) {
-    var result = []
-    result.push(...array)
-    return values.reduce (function (result, item, index, values) {
-      if (Array.isArray(item)) {
-        result.push(...item)
-      } else {
-        result.push(item)
-      }
-      return result
-    }, result)
-  },
+
 
   map: function (collection, mapper) {
     return collection.reduce(function (result, item, index, collection) {
@@ -102,16 +261,7 @@ var jihao9325 = {
     }, [])
   },
 
-  fill: function (array, value, start = 0, end = array.length) {
-    if (start < 0) {start = array.length + start}
-    if (end < 0) {end = array.length + end}
-    array.reduce(function (result, item, index, array) {
-      if (index >= start && index < end) {
-        array[index] = value
-      }
-    }, 0)
-    return array
-  },
+
 
   slice: function (array, start = 0, end = array.length) {
     if (start < 0) {start = array.length + start}
@@ -125,27 +275,9 @@ var jihao9325 = {
     }, [])
   },
 
-  flatten: function (array) {
-    return array.reduce(function (result, item, index, array) {
-      if (Array.isArray(item)) {
-        result.push(...item)
-      } else {
-        result.push(item)
-      }
-      return result
-    },[])
-  },
 
-  difference: function (array, ...values) {
-    return array.filter(function (item) {
-      var ary = [].concat(...values)
-      return ary.indexOf(item) == -1
-    })
-  },
 
-  differenceBy: function () {
 
-  },
 
   matches: function (source) {
     return function (obj) {
@@ -162,14 +294,13 @@ var jihao9325 = {
     return this.matches(fromPairs(pairs))
   },
 
-  fromPairs: function (pairs) {
 
-  },
 
   toPairs: function (pairs) {
 
   },
 
+/*---Math---*/
   add: function (augend, addend) {
     return augend + addend
   },
@@ -247,7 +378,7 @@ var jihao9325 = {
     return multiplier * multiplicand
   },
 
-  round: function (number, precision) {
+  round: function (number, precision = 0) {
     return Math.round(number * 10 ** precision) / 10 ** precision
   },
 
@@ -269,6 +400,7 @@ var jihao9325 = {
     }, 0)
   },
 
+/*---Number---*/
   clamp: function (number, lower, upper) {
     if (arguments.length == 1) {
       return number
@@ -346,7 +478,7 @@ var jihao9325 = {
     }
   },
 
-  
+
 
 
 }
