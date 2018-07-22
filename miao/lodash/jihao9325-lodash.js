@@ -143,7 +143,7 @@ var jihao9325 = {
     })
   },
 
-  differenceBy: function (array, ...values, iteratee) {
+  differenceBy: function () {
 
   },
 
@@ -255,6 +255,32 @@ var jihao9325 = {
     }, 0)
   },
 
+  clamp: function (number, lower, upper) {
+    if (arguments.length == 1) {
+      return number
+    }
+    if (arguments.length == 2) {
+      number = arguments[0]
+      lower = undefined
+      upper = arguments[1]
+    }
+    lower = (lower === null ? 0 : lower)
+    upper = (upper === null ? 0 : upper)
+    if (lower === undefined && upper === undefined) {
+      return number
+    }
+    if (lower === undefined) {
+      return Math.min(number, upper)
+    }
+    if (upper === undefined) {
+      return Math.max(number, lower)
+    }
+    return Math.max(lower, Math.min(number, upper))
+  },
+
+  inRange: function (number, start = 0, end) {
+
+  },
 
 
 
