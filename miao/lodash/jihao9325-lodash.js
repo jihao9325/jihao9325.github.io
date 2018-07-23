@@ -112,12 +112,23 @@ var jihao9325 = {
     },[])
   },
 
-  flattenDeep: function () {
-
+  flattenDeep: function (array) {
+    return this.flattenDepth(array, Infinity)
   },
 
-  flattenDepth: function () {
-
+  flattenDepth: function (array, depth = 1) {
+    if (depth == 0) {
+      return array.slice()
+    }
+    return array.reduce(function (result, item) {
+      if (Array.isArray(item)) {
+        var tmp = flattenDepth(item, depth - 1)
+        result = [...result, ...tmp]
+      } else {
+        result.push(item)
+      }
+      return result
+    }, [])
   },
 
   fromPairs: function (pairs) {
@@ -195,6 +206,15 @@ var jihao9325 = {
       }
     }, 0)
     return array
+  },
+
+  pullAt(array, ...indexes) {
+    var val = flattenDeep(indexes)
+    var pulled = []
+    for (var i = 0; i < val.length; i++) {
+      pulled.push(array.shift(i, 1))
+    }
+    return pulled
   },
 
   reverse: function (array) {
