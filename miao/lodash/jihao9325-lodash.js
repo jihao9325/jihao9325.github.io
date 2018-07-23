@@ -122,7 +122,7 @@ var jihao9325 = {
     }
     return array.reduce(function (result, item) {
       if (Array.isArray(item)) {
-        var tmp = flattenDepth(item, depth - 1)
+        var tmp = this.flattenDepth(item, depth - 1)
         result = [...result, ...tmp]
       } else {
         result.push(item)
@@ -209,7 +209,7 @@ var jihao9325 = {
   },
 
   pullAt(array, ...indexes) {
-    var val = flattenDeep(indexes)
+    var val = jihao9325.flattenDeep(indexes)
     var pulled = []
     for (var i = 0; i < val.length; i++) {
       pulled.push(array.shift(i, 1))
