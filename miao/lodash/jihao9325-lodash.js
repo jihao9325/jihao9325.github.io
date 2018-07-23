@@ -198,13 +198,15 @@ var jihao9325 = {
 
   //O(n2)
   pull: function (array, ...values) {
-    array.reduce(function (result, item, index) {
-      for (var key in values) {
-        if (item == key) {
-          array.splice(index, 1)
+    for (var i = 0; i < array.length; i++) {
+      for (var key of values) {
+        if (array[i] == key) {
+          array.splice(i, 1)
+          i--
+          break
         }
       }
-    }, 0)
+    }
     return array
   },
 
