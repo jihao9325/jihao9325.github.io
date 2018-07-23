@@ -113,16 +113,16 @@ var jihao9325 = {
   },
 
   flattenDeep: function (array) {
-    return this.flattenDepth(array, Infinity)
+    return jihao9325.flattenDepth(array, Infinity)
   },
 
-  flattenDepth: function (array, depth = 1) {
+  flattenDepth: function flattenDepth(array, depth = 1) {
     if (depth == 0) {
       return array.slice()
     }
     return array.reduce(function (result, item) {
       if (Array.isArray(item)) {
-        var tmp = this.flattenDepth(item, depth - 1)
+        var tmp = flattenDepth(item, depth - 1)
         result = [...result, ...tmp]
       } else {
         result.push(item)
