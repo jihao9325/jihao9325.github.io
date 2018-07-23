@@ -128,8 +128,13 @@ var jihao9325 = {
     return array[0]
   },
 
-  indexOf: function () {
-
+  indexOf: function (array, value, fromIndex = 0) {
+    for (var i = fromIndex; i < array.length; i++) {
+      if (array[i] == value) {
+        return i
+      }
+    }
+    return -1
   },
 
   initial: function (array) {
@@ -164,8 +169,13 @@ var jihao9325 = {
     return array[array.length - 1]
   },
 
-  lastIndexOf: function () {
-
+  lastIndexOf: function (array, value, fromIndex = array.length - 1) {
+    for (var i = fromIndex; i >= 0; i--) {
+      if (array[i] == value) {
+        return i
+      }
+    }
+    return -1
   },
 
   nth: function (array, n = 0) {
@@ -175,8 +185,16 @@ var jihao9325 = {
     return array[n]
   },
 
-  pull: function () {
-
+  //O(n2)
+  pull: function (array, ...values) {
+    array.reduce(function (result, item, index) {
+      for (var key in values) {
+        if (item == values) {
+          array.splice(index, 1)
+        }
+      }
+    }, 0)
+    return array
   },
 
   reverse: function (array) {
