@@ -200,7 +200,7 @@ var jihao9325 = {
   pull: function (array, ...values) {
     array.reduce(function (result, item, index) {
       for (var key in values) {
-        if (item == values) {
+        if (item == key) {
           array.splice(index, 1)
         }
       }
