@@ -214,7 +214,11 @@ var jihao9325 = {
     var val = jihao9325.flattenDeep(indexes)
     var pulled = []
     for (var i = 0; i < val.length; i++) {
-      pulled.push(array.shift(i, 1))
+      pulled.push(array.splice(val[i], 1))
+      if (i + 1 == val.length) {
+        break
+      }
+      val[i+1]--
     }
     return pulled
   },
