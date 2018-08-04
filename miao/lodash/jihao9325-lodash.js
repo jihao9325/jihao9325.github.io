@@ -49,8 +49,8 @@ var jihao9325 = {
     }
   },
 
-  rangeRight: function (start, end, step) {
-    return jihao9325.range(start, end, step).reverse()
+  rangeRight: function (...vals) {
+    return jihao9325.range(...vals).reverse()
   },
 
   toPath: function (value) {
