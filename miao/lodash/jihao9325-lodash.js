@@ -22,22 +22,26 @@ var jihao9325 = {
   range: function (start = 0, end, step = 1) {
     var len = arguments.length
     var result = []
-    if (len == 0) {return []}
-    if (step == 0) {return [start]}
+    if (len == 0 || start == end) {return []}
     if (len == 1) {
       start = 0
       end = arguments[0]
     }
-
-    if (end >= start) {
+    if (end > start) {
       if (step < 0) {return []}
+      if (step == 0) {
+        for (var n = 0; n < end - start; n++) {
+          result.push(start)
+        }
+        return result
+      }
       for (var i = start; i < end; i += step) {
         result.push(i)
       }
       return result
     } else {
       step = (step == 1 && len <= 2) ? -1 : step
-      if (step > 0) {return []}
+      if (step >= 0) {return []}
       for (var i = start; i > end; i += step) {
         result.push(i)
       }
@@ -45,7 +49,7 @@ var jihao9325 = {
     }
   },
 
-  rangeRight: function (start = 0, end, step = 1) {
+  rangeRight: function (start, end, step) {
     return jihao9325.range(start, end, step).reverse()
   },
 
@@ -58,7 +62,7 @@ var jihao9325 = {
     return result
   },
 
-  
+
 /*---Array---*/
   chunk: function (array, size = 1) {
     var result = []
@@ -578,7 +582,7 @@ var jihao9325 = {
   },
 
   unary: function (func) {
-    return tihs.ary(func, 1)
+    return this.ary(func, 1)
   },
 
   negate: function () {
