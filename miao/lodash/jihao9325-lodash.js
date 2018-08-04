@@ -11,6 +11,54 @@ var jihao9325 = {
     }
   },
 
+  bindAll: function (object, methodNames) {
+    methodNames = Array.isArray(methodNames) ? methodNames : [methodNames]
+    for (var item of methodNames) {
+      object[item] = object[item].bind(object)
+    }
+    return object
+  },
+
+  range: function (start = 0, end, step = 1) {
+    var len = arguments.length
+    var result = []
+    if (len == 0) {return []}
+    if (step == 0) {return [start]}
+    if (len == 1) {
+      start = 0
+      end = arguments[0]
+    }
+
+    if (end >= start) {
+      if (step < 0) {return []}
+      for (var i = start; i < end; i += step) {
+        result.push(i)
+      }
+      return result
+    } else {
+      step = (step == 1 && len <= 2) ? -1 : step
+      if (step > 0) {return []}
+      for (var i = start; i > end; i += step) {
+        result.push(i)
+      }
+      return result
+    }
+  },
+
+  rangeRight: function (start = 0, end, step = 1) {
+    return jihao9325.range(start, end, step).reverse()
+  },
+
+  toPath: function (value) {
+    var result
+    if (typeof value == 'number') {
+      value = String(value)
+    }
+    result = value.split('[]').join('.').split('[').join('.').split('].').join('.').split('.')
+    return result
+  },
+
+  
 /*---Array---*/
   chunk: function (array, size = 1) {
     var result = []
@@ -522,7 +570,25 @@ var jihao9325 = {
     }
   },
 
+/*---Function---*/
+  ary: function (func, n = func.length) {
+    return function (...vals) {
+      return func(...vals.slice(0, n))
+    }
+  },
 
+  unary: function (func) {
+    return tihs.ary(func, 1)
+  },
 
+  negate: function () {
+
+  },
+
+  bind: function (func, thisArg, ...fixedArgs) {
+    return function (...restArgs) {
+      return func.apply(this.Arg, [...fixedArgs, ...restArgs])
+    }
+  },
 
 }
