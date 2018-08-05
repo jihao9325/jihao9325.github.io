@@ -27,7 +27,7 @@ var jihao9325 = {
   },
 
   propertyOf: function (object) {
-    return funciton(path) {
+    return function(path) {
       return jihao9325.get(object, path)
     }
   },
