@@ -5,10 +5,18 @@ var jihao9325 = {
     return value[0]
   },
 
+  iteratee: function (func = jihao9325.identity) {
+
+  },
+
   property: function (path) {
     return function (obj) {
       return obj[path]
     }
+  },
+
+  propertyOf: function (object) {
+
   },
 
   bindAll: function (object, methodNames) {
@@ -60,6 +68,21 @@ var jihao9325 = {
     }
     result = value.split('[]').join('.').split('[').join('.').split('].').join('.').split('.')
     return result
+  },
+
+  matches: function (source) {
+    return function (obj) {
+      for (var key in source) {
+        if (obj[key] !== source[key]) {
+          return false
+        }
+        return true
+      }
+    }
+  },
+
+  matchesProperty: function (pairs) {
+    return this.matches(fromPairs(pairs))
   },
 
 
@@ -262,6 +285,18 @@ var jihao9325 = {
     return array
   },
 
+  pullAll: function (array, values) {
+    return jihao9325.pull(array, ...values)
+  },
+
+  pullAllBy: function (array, values, iteratee = jihao9325.identity) {
+
+  },
+
+  pullAllWith: function (array, values, comparator) {
+
+  },
+
   pullAt(array, ...indexes) {
     var val = jihao9325.flattenDeep(indexes)
     var pulled = []
@@ -285,6 +320,38 @@ var jihao9325 = {
     return array
   },
 
+  sortedIndex: function (array, value) {
+
+  },
+
+  sortedIndexBy: function (array, value, iteratee = jihao9325.identity) {
+
+  },
+
+  sortedIndexOf: function (array, value) {
+
+  },
+
+  sortedLastIndex: function (array, value) {
+
+  },
+
+  sortedLastIndexBy: function (array, value, iteratee = jihao9325.identity) {
+
+  },
+
+  sortedLastIndexOf: function (array, value) {
+
+  },
+
+  sortedUniq: function (array) {
+
+  },
+
+  sortedUniqBy: function (array, iteratee) {
+
+  },
+
   tail: function (array) {
     array.shift()
     return array
@@ -294,6 +361,86 @@ var jihao9325 = {
     return array.slice(0, n)
   },
 
+  takeRight: function (array, n = 1) {
+    var len = array.length
+    n = n > len ? len : n
+    return array.slice(len - n, len)
+  },
+
+  takeRightWhile: function (array, predicate = jihao9325.identity) {
+
+  },
+
+  takeWhile: function (array, predicate = jihao9325.identity) {
+
+  },
+
+  union: function (arrays) {
+
+  },
+
+  unionBy: function (arrays, iteratee = jihao9325.identity) {
+
+  },
+
+  unionWith: function (arrays, comparator) {
+
+  },
+
+  uniq: function (array) {
+
+  },
+
+  uniqBy: function (array, iteratee = jihao9325.identity) {
+
+  },
+
+  uniqWith: function (array, comparator) {
+
+  },
+
+  unzip: function (array) {
+
+  },
+
+  unzipWith: function (array, iteratee = jihao9325.identity) {
+
+  },
+
+  without: function (array, values) {
+
+  },
+
+  xor: function (arrays) {
+
+  },
+
+  xorBy: function (arrays, iteratee = jihao9325.identity) {
+
+  },
+
+  xorWith: function (arrays, comparator) {
+
+  },
+
+  zip: function (arrays) {
+
+  },
+
+  zipObject: function (props = [], values = []) {
+
+  },
+
+  zipObjectDeep: function (props = [], values = []) {
+
+  },
+
+  zipWith: function (arrays, iteratee = jihao9325.identity) {
+
+  },
+
+
+/*---Collection---*/
   reduce: function (collection, reducer, initialValue) {
     if (Array.isArray(collection)) {
       var i = 0
@@ -371,29 +518,14 @@ var jihao9325 = {
     }, [])
   },
 
-
-
-
-
-  matches: function (source) {
-    return function (obj) {
-      for (var key in source) {
-        if (obj[key] !== source[key]) {
-          return false
-        }
-        return true
-      }
-    }
+  fromPairs: function (pairs) {
+    var result = {}
+    pairs.forEach(function(item) {result[item[0]] = item[1]})
+    return result
   },
-
-  matchesProperty: function (pairs) {
-    return this.matches(fromPairs(pairs))
-  },
-
-
 
   toPairs: function (pairs) {
-
+    return Object.entries(pairs)
   },
 
 /*---Math---*/
@@ -573,6 +705,27 @@ var jihao9325 = {
       }, funcs.shift()(...vals))
     }
   },
+/*---String---*/
+
+lowerCase: function (string = '') {
+
+},
+
+lowerFirst: function (string = '') {
+  
+},
+
+upperCase: function (string = '') {
+
+},
+
+upperFirst: function (string = '') {
+
+},
+
+words: function () {
+
+},
 
 /*---Function---*/
   ary: function (func, n = func.length) {
