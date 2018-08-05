@@ -6,7 +6,18 @@ var jihao9325 = {
   },
 
   iteratee: function (func = jihao9325.identity) {
-
+    if (Array.isArray(func)) {
+      return jihao9325.matchesProperty(func)
+    }
+    if (typeof func == 'function') {
+      return func
+    }
+    if (typeof func == 'string') {
+      return this.property(func)
+    }
+    if (Object.prototype.toString.call(func) == '[object Object]') {
+      return this.matches(func)
+    }
   },
 
   property: function (path) {
@@ -16,7 +27,9 @@ var jihao9325 = {
   },
 
   propertyOf: function (object) {
-
+    return funciton(path) {
+      return jihao9325.get(object, path)
+    }
   },
 
   bindAll: function (object, methodNames) {
@@ -206,10 +219,6 @@ var jihao9325 = {
     }, [])
   },
 
-  fromPairs: function (pairs) {
-
-  },
-
   head: function (array) {
     return array[0]
   },
@@ -290,11 +299,19 @@ var jihao9325 = {
   },
 
   pullAllBy: function (array, values, iteratee = jihao9325.identity) {
-
+    iteratee = jihao9325.iteratee(iteratee)
+    for (var item of values) {
+      remove(array, key => iteratee(item) == iteratee(key))
+    }
+    return array
   },
 
   pullAllWith: function (array, values, comparator) {
-
+    comparator = jihao9325.iteratee(comparator)
+    for (var item of values) {
+      this.remove(array, key => comparator(item, key))
+    }
+    return array
   },
 
   pullAt(array, ...indexes) {
@@ -308,6 +325,17 @@ var jihao9325 = {
       val[i+1]--
     }
     return pulled
+  },
+
+  remove: function (array, predicate = jihao9325.identity) {
+    predicate = jihao9325.iteratee(predicate)
+    for (var i = 0; i < array.length; i++) {
+      if (predicate(array[i])) {
+        result.push(array.splice(i, 1))
+        i--
+      }
+    }
+    return result 
   },
 
   reverse: function (array) {
@@ -705,8 +733,20 @@ var jihao9325 = {
       }, funcs.shift()(...vals))
     }
   },
-/*---String---*/
 
+/*---Object---*/
+get: function (object, path, defaultValue) {
+  var result = object
+  path = jihao9325.toPath(path)
+  for (var key of path) {
+    if (result) {
+      result = result[key]
+    }
+  }
+  return result == undefined ? defaultValue : result
+},
+
+/*---String---*/
 lowerCase: function (string = '') {
 
 },
